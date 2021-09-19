@@ -1,8 +1,11 @@
 package com.olplatform.olplatform.models.Instructor;
 
+import com.olplatform.olplatform.models.Classroom.Classroom;
 import com.olplatform.olplatform.models.Person;
+import java.util.Set;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 @Entity
 @DiscriminatorValue("instructor")
@@ -10,6 +13,13 @@ public class Instructor extends Person {
   protected long salary;
 
   protected String sin;
+
+  /**
+   * The mappedBy property is what we use to tell Hibernate which variable we're
+   * using to represent the parent class in our child class.
+   */
+  @OneToMany(mappedBy = "instructor")
+  protected Set<Classroom> classrooms;
 
   public Instructor() {
     super();
