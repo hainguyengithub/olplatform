@@ -14,7 +14,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.JOINED) /* Do not use SINGLE_TABLE to avoid conflicts. */
 @DiscriminatorColumn(
   name = "administrable_type",
   discriminatorType = DiscriminatorType.STRING
