@@ -7,3 +7,13 @@ GRANT ALL ON olplatform.* TO 'hainguyen'@'%';
 -- `SELECT user, host FROM mysql.user;`
 -- `DROP user 'hainguyen'@'localhost';`
 -- See application.properties file.
+
+
+DROP TABLE class_registration;
+DROP TABLE classroom;
+DROP TABLE program;
+DROP TABLE course;
+DROP TABLE administrable;
+DROP TABLE person;
+
+-- create academic advisor

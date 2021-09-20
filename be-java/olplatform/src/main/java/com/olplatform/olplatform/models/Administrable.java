@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.olplatform.olplatform.interfaces.Manageable;
 import com.olplatform.olplatform.interfaces.Terminable;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
@@ -14,7 +15,9 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED) /* Do not use SINGLE_TABLE to avoid conflicts. */
+@Inheritance(
+  strategy = InheritanceType.JOINED
+) /* Do not use SINGLE_TABLE to avoid conflicts. */
 @DiscriminatorColumn(
   name = "administrable_type",
   discriminatorType = DiscriminatorType.STRING
@@ -26,6 +29,7 @@ public class Administrable implements Manageable, Terminable {
 
   protected String name;
 
+  @Column(length = 1000)
   protected String description;
 
   @JsonFormat(

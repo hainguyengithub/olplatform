@@ -7,8 +7,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Program extends Administrable {
-  @ManyToOne
-  @JoinColumn(name = "id", nullable = false)
-  protected AcademicAdvisor academicAdvisor;
-}
+public class Program extends Administrable {}
+
+// Uni-directional 1-N relationship
+// @ManyToOne
+// @JoinColumn(
+//   name = "academic_advisor_id",
+//   referencedColumnName = "id",
+//   nullable = true
+// )
+// protected AcademicAdvisor academicAdvisor;
