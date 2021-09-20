@@ -1,5 +1,9 @@
 package com.olplatform.olplatform.models.Program;
 
+import com.olplatform.olplatform.models.DTOs.ProgramDTO;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,21 +23,36 @@ public class ProgramController {
   private ProgramRepository programRepository;
 
   @GetMapping("/api/programs")
-  public ResponseEntity<Iterable<Program>> findAll() {
-    Iterable<Program> programs = this.programRepository.findAll();
-    return new ResponseEntity<Iterable<Program>>(programs, HttpStatus.OK);
+  public ResponseEntity<List<ProgramDTO>> findAll() {
+    List<Program> programs = StreamSupport
+      .stream(this.programRepository.findAll().spliterator(), false)
+      .collect(Collectors.toList());
+    List<ProgramDTO> programsDTO = programs
+      .stream()
+      .map(ProgramDTO::from)
+      .collect(Collectors.toList());
+    return new ResponseEntity<List<ProgramDTO>>(programsDTO, HttpStatus.OK);
   }
 
   @PutMapping("/api/programs")
-  public ResponseEntity<Program> updateOne(@RequestBody Program program) {
+  public ResponseEntity<ProgramDTO> updateOne(@RequestBody Program program) {
     Program updatedProgram = this.programRepository.save(program);
-    return new ResponseEntity<Program>(updatedProgram, HttpStatus.OK);
+    return new ResponseEntity<ProgramDTO>(
+      ProgramDTO.from(updatedProgram),
+      HttpStatus.OK
+    );
   }
 
   @PostMapping("/api/programs")
-  public ResponseEntity<Program> addOne(@RequestBody Program program) {
-    Program createdProgram = this.programRepository.save(program);
-    return new ResponseEntity<Program>(createdProgram, HttpStatus.OK);
+  public ResponseEntity<ProgramDTO> addOne(
+    @RequestBody final ProgramDTO programDTO
+  ) {
+    Program createdProgram =
+      this.programRepository.save(Program.from(programDTO));
+    return new ResponseEntity<ProgramDTO>(
+      ProgramDTO.from(createdProgram),
+      HttpStatus.OK
+    );
   }
 
   @DeleteMapping("/api/programs/{programId}")
