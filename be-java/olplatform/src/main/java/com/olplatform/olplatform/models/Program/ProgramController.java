@@ -3,7 +3,6 @@ package com.olplatform.olplatform.models.Program;
 import com.olplatform.olplatform.models.DTOs.ProgramDTO;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,45 +18,59 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin
 @RestController
 public class ProgramController {
-  @Autowired
-  private ProgramRepository programRepository;
+  public static final String API_PROGRAMS = "/api/programs";
 
-  @GetMapping("/api/programs")
-  public ResponseEntity<List<ProgramDTO>> findAll() {
-    List<Program> programs = StreamSupport
-      .stream(this.programRepository.findAll().spliterator(), false)
-      .collect(Collectors.toList());
+  @Autowired
+  private ProgramService programService;
+
+  @GetMapping(API_PROGRAMS)
+  public ResponseEntity<List<ProgramDTO>> getEntities() {
+    List<Program> programs = this.programService.getEntities();
     List<ProgramDTO> programsDTO = programs
       .stream()
       .map(ProgramDTO::from)
       .collect(Collectors.toList());
-    return new ResponseEntity<List<ProgramDTO>>(programsDTO, HttpStatus.OK);
+    return new ResponseEntity<>(programsDTO, HttpStatus.OK);
   }
 
-  @PutMapping("/api/programs")
-  public ResponseEntity<ProgramDTO> updateOne(@RequestBody Program program) {
-    Program updatedProgram = this.programRepository.save(program);
-    return new ResponseEntity<ProgramDTO>(
-      ProgramDTO.from(updatedProgram),
-      HttpStatus.OK
-    );
+  @GetMapping(API_PROGRAMS + "/{programId}")
+  public ResponseEntity<ProgramDTO> getEntity(
+    @PathVariable final Long programId
+  )
+    throws Exception {
+    Program program = this.programService.getEntity(programId);
+    return new ResponseEntity<>(ProgramDTO.from(program), HttpStatus.OK);
   }
 
-  @PostMapping("/api/programs")
+  @PostMapping(API_PROGRAMS)
   public ResponseEntity<ProgramDTO> addOne(
     @RequestBody final ProgramDTO programDTO
   ) {
     Program createdProgram =
-      this.programRepository.save(Program.from(programDTO));
+      this.programService.addEntity(Program.from(programDTO));
     return new ResponseEntity<ProgramDTO>(
       ProgramDTO.from(createdProgram),
       HttpStatus.OK
     );
   }
 
-  @DeleteMapping("/api/programs/{programId}")
-  public ResponseEntity<Integer> deleteOne(@PathVariable long programId) {
-    int result = this.programRepository.deleteOne(programId);
-    return new ResponseEntity<Integer>(result, HttpStatus.OK);
+  @PutMapping(API_PROGRAMS + "/{programId}")
+  public ResponseEntity<ProgramDTO> updateEntity(
+    @PathVariable final Long programId,
+    @RequestBody final ProgramDTO programDTO
+  )
+    throws Exception {
+    Program program =
+      this.programService.updateEntity(programId, Program.from(programDTO));
+    return new ResponseEntity<>(ProgramDTO.from(program), HttpStatus.OK);
+  }
+
+  @DeleteMapping(API_PROGRAMS + "/{programId}")
+  public ResponseEntity<ProgramDTO> deleteItem(
+    @PathVariable final Long programId
+  )
+    throws Exception {
+    Program program = this.programService.deleteEntity(programId);
+    return new ResponseEntity<>(ProgramDTO.from(program), HttpStatus.OK);
   }
 }

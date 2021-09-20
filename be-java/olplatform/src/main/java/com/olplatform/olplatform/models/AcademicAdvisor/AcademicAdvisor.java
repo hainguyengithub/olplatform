@@ -1,12 +1,15 @@
 package com.olplatform.olplatform.models.AcademicAdvisor;
 
-import com.olplatform.olplatform.models.Person;
+import com.olplatform.olplatform.models.DTOs.AcademicAdvisorDTO;
 import com.olplatform.olplatform.models.Program.Program;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -15,13 +18,26 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name = "academic_advisor")
-@DiscriminatorValue("academic_advisor")
-public class AcademicAdvisor extends Person {
-  /**
-   * The "academic_advisor_id" is a column name in the Program table.
-   */
+public class AcademicAdvisor {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  protected long id;
+
+  protected String firstName;
+
+  protected String lastName;
+
+  protected String username;
+
+  protected String password;
+
+  protected String email;
+
+  protected String phoneNumber;
+
+  // The "academic_advisor_id" is a column name in the Program table.
   @OneToMany(cascade = CascadeType.ALL)
-  @JoinColumn
+  @JoinColumn(name = "academic_advisor_id")
   protected List<Program> programs = new ArrayList<Program>();
 
   public AcademicAdvisor() {}
@@ -34,5 +50,14 @@ public class AcademicAdvisor extends Person {
     this.programs.remove(program);
   }
 
-  // @todo from(AcademicDTO)
+  public static AcademicAdvisor from(AcademicAdvisorDTO academicAdvisorDTO) {
+    AcademicAdvisor academicAdvisor = new AcademicAdvisor();
+    academicAdvisor.setId(academicAdvisorDTO.getId());
+    academicAdvisor.setFirstName(academicAdvisorDTO.getFirstName());
+    academicAdvisor.setLastName(academicAdvisorDTO.getLastName());
+    academicAdvisor.setUsername(academicAdvisorDTO.getUsername());
+    academicAdvisor.setEmail(academicAdvisorDTO.getEmail());
+    academicAdvisor.setPhoneNumber(academicAdvisorDTO.getPhoneNumber());
+    return academicAdvisor;
+  }
 }
