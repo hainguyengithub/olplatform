@@ -1,8 +1,6 @@
 package com.olplatform.olplatform.models.Resource.Material;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.olplatform.olplatform.interfaces.Manageable;
-import com.olplatform.olplatform.interfaces.Terminable;
 import com.olplatform.olplatform.models.Administrable;
 import com.olplatform.olplatform.models.Classroom.Classroom;
 import java.util.Date;
