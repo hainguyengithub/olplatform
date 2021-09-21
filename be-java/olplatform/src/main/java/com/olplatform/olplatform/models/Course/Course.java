@@ -3,18 +3,14 @@ package com.olplatform.olplatform.models.Course;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.olplatform.olplatform.models.Administrable;
 import com.olplatform.olplatform.models.Classroom.Classroom;
-import com.olplatform.olplatform.models.Program.Program;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Data;
@@ -54,11 +50,10 @@ public class Course extends Administrable {
   //   cascade = CascadeType.PERSIST
   // )
   // protected List<Program> programs = new ArrayList<Program>();
-
-  @OneToMany(mappedBy = "course")
-  protected List<Classroom> classrooms = new ArrayList<>();
-
   // public void addProgram(Program program) {
   //   this.programs.add(program);
   // }
+
+  @OneToMany(mappedBy = "course")
+  protected List<Classroom> classrooms = new ArrayList<>();
 }
