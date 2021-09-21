@@ -3,11 +3,10 @@ package com.olplatform.olplatform.models.Classroom;
 import com.olplatform.olplatform.models.Course.Course;
 import com.olplatform.olplatform.models.Instructor.Instructor;
 import com.olplatform.olplatform.models.Program.Program;
+import com.olplatform.olplatform.models.Resource.Material;
 import com.olplatform.olplatform.models.Seat.Seat;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -45,6 +44,21 @@ public class Classroom {
   @JoinColumn(name = "instructor_id")
   protected Instructor instructor;
 
-  @OneToMany(mappedBy = "classroom") /* classroom is an attribute in ClassRegistration. */
+  @OneToMany(
+    mappedBy = "classroom"
+  )/* classroom is an attribute in ClassRegistration. */
   protected List<Seat> classRegistrations = new ArrayList<>();
+
+  // The "classroom_id" is a column name in the Material table.
+  @OneToMany(cascade = CascadeType.ALL)
+  @JoinColumn(name = "classroom_id")
+  protected List<Material> materials = new ArrayList<>();
+
+  public void addMaterial(Material material) {
+    this.materials.add(material);
+  }
+
+  public void deleteMaterial(Material material) {
+    this.materials.remove(material);
+  }
 }
