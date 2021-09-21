@@ -4,23 +4,34 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.olplatform.olplatform.interfaces.Manageable;
 import com.olplatform.olplatform.interfaces.Terminable;
 import com.olplatform.olplatform.models.AcademicAdvisor.AcademicAdvisor;
+import com.olplatform.olplatform.models.Course.Course;
 import com.olplatform.olplatform.models.DTOs.ProgramDTO;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import lombok.Data;
 
 @Entity
+@Table(name = "program")
 @Data
 public class Program implements Terminable, Manageable {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   protected long id = 0L;
 
+  @Column(length = 255)
   protected String name;
 
   @Column(length = 1000)
@@ -39,6 +50,19 @@ public class Program implements Terminable, Manageable {
     timezone = "America/Toronto"
   )
   protected Date endDate;
+
+  /**
+   * Program entity owns the relationship. Hence, "mappedBy" is not used in the
+   * @ManyToMany annotation. Therefore, Course entity has to specify "mappedBy"
+   * in that annotation.
+   */
+  @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+  @JoinTable(
+    name = "program_course",
+    joinColumns = @JoinColumn(name = "program_id"),
+    inverseJoinColumns = @JoinColumn(name = "course_id")
+  )
+  protected List<Course> courses = new ArrayList<Course>();
 
   @ManyToOne
   protected AcademicAdvisor academicAdvisor;
@@ -61,6 +85,10 @@ public class Program implements Terminable, Manageable {
     this.startDate = startDate;
     this.endDate = endDate;
     this.academicAdvisor = academicAdvisor;
+  }
+
+  public void addCourse(Course course) {
+    this.courses.add(course);
   }
 
   public AcademicAdvisor getAcademicAdvisor() {
