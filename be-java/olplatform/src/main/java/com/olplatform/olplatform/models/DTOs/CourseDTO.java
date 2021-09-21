@@ -1,16 +1,15 @@
 package com.olplatform.olplatform.models.DTOs;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.olplatform.olplatform.models.Program.Program;
+import com.olplatform.olplatform.models.Course.Course;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 import lombok.Data;
 
 @Data
-public class ProgramDTO {
+public class CourseDTO {
   protected long id;
 
   protected String name;
@@ -31,29 +30,25 @@ public class ProgramDTO {
   )
   protected Date endDate;
 
-  protected PlainAcademicAdvisorDTO plainAcademicAdvisorDTO;
+  protected String code;
 
   protected List<ClassroomDTO> classroomsDTO = new ArrayList<>();
 
-  public static ProgramDTO from(Program program) {
-    ProgramDTO programDTO = new ProgramDTO();
-    programDTO.setId(program.getId());
-    programDTO.setName(program.getName());
-    programDTO.setDescription(program.getDescription());
-    programDTO.setStartDate(program.getStartDate());
-    programDTO.setEndDate(program.getEndDate());
-    if (Objects.nonNull(program.getAcademicAdvisor())) {
-      programDTO.setPlainAcademicAdvisorDTO(
-        PlainAcademicAdvisorDTO.from(program.getAcademicAdvisor())
-      );
-    }
-    programDTO.setClassroomsDTO(
-      program
+  public CourseDTO from(Course course) {
+    CourseDTO dto = new CourseDTO();
+    dto.setId(course.getId());
+    dto.setName(course.getName());
+    dto.setDescription(course.getDescription());
+    dto.setStartDate(course.getStartDate());
+    dto.setEndDate(course.getEndDate());
+    dto.setCode(course.getCode());
+    dto.setClassroomsDTO(
+      course
         .getClassrooms()
         .stream()
         .map(ClassroomDTO::from)
         .collect(Collectors.toList())
     );
-    return programDTO;
+    return dto;
   }
 }

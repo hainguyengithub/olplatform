@@ -1,5 +1,8 @@
 package com.olplatform.olplatform.models.Program;
 
+import com.olplatform.olplatform.models.Classroom.Classroom;
+import com.olplatform.olplatform.models.Classroom.ClassroomService;
+import com.olplatform.olplatform.models.DTOs.ClassroomDTO;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -11,6 +14,9 @@ import org.springframework.stereotype.Service;
 public class ProgramService {
   @Autowired
   private ProgramRepository programRepository;
+
+  @Autowired
+  private ClassroomService classroomService;
 
   public List<Program> getEntities() {
     return StreamSupport
@@ -29,7 +35,8 @@ public class ProgramService {
   }
 
   @Transactional
-  public Program updateEntity(Long programId, Program program) throws Exception {
+  public Program updateEntity(Long programId, Program program)
+    throws Exception {
     Program updatedProgram = this.getEntity(programId);
     updatedProgram.setName(program.getName());
     updatedProgram.setDescription(program.getDescription());
@@ -42,5 +49,10 @@ public class ProgramService {
     Program program = this.getEntity(programId);
     this.programRepository.delete(program);
     return program;
+  }
+
+  public List<Classroom> getClassroomsOfProgram(Long programId)
+    throws Exception {
+    return this.classroomService.getClassroomsOfProgram(programId);
   }
 }

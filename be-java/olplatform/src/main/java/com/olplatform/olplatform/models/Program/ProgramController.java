@@ -1,5 +1,8 @@
 package com.olplatform.olplatform.models.Program;
 
+import com.olplatform.olplatform.models.Classroom.Classroom;
+import com.olplatform.olplatform.models.DTOs.ClassroomDTO;
+import com.olplatform.olplatform.models.DTOs.CourseDTO;
 import com.olplatform.olplatform.models.DTOs.ProgramDTO;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -43,7 +46,7 @@ public class ProgramController {
   }
 
   @PostMapping(API_PROGRAMS)
-  public ResponseEntity<ProgramDTO> addOne(
+  public ResponseEntity<ProgramDTO> addEntity(
     @RequestBody final ProgramDTO programDTO
   ) {
     Program createdProgram =
@@ -73,4 +76,33 @@ public class ProgramController {
     Program program = this.programService.deleteEntity(programId);
     return new ResponseEntity<>(ProgramDTO.from(program), HttpStatus.OK);
   }
+
+  /*****************************************************************************
+   * Program N - N Course
+   ****************************************************************************/
+
+  public static final String API_PROGRAMS_COURSES =
+    "/api/programs/{programId}/courses";
+
+  @GetMapping(API_PROGRAMS_COURSES)
+  public ResponseEntity<List<ClassroomDTO>> getCoursesOfProgram(
+    @PathVariable long programId
+  ) throws Exception {
+    List<Classroom> classrooms =
+      this.programService.getClassroomsOfProgram(programId);
+    List<ClassroomDTO> classroomsDTO = classrooms
+      .stream()
+      .map(ClassroomDTO::from)
+      .collect(Collectors.toList());
+    return new ResponseEntity<List<ClassroomDTO>>(classroomsDTO, HttpStatus.OK);
+  }
 }
+/*
+List<Program> programs = this.programService.getEntities();
+
+List<ProgramDTO> programsDTO = programs
+      .stream()
+      .map(ProgramDTO::from)
+      .collect(Collectors.toList());
+    return new ResponseEntity<>(programsDTO, HttpStatus.OK);
+*/
