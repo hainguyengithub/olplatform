@@ -46,12 +46,12 @@ public class Material extends Administrable {
 
   @Lob
   @Column(name = "attachment")
-  protected byte[] attachment;
+  protected byte[] attachment = null;
 
   @Column(name = "attachment_name", length = 255)
   protected String attachmentName;
 
-  @Column(name = "attachment_enabled", nullable = false)
+  @Column(name = "attachment_enabled", nullable = true)
   protected boolean attachmentEnabled;
 
   @ManyToOne
