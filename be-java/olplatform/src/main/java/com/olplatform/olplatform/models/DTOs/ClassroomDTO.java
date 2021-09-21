@@ -7,10 +7,10 @@ import com.olplatform.olplatform.models.DTOs.PlainDTOs.PlainInstructorDTO;
 import com.olplatform.olplatform.models.DTOs.PlainDTOs.PlainProgramDTO;
 import com.olplatform.olplatform.models.Instructor.Instructor;
 import com.olplatform.olplatform.models.Program.Program;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import lombok.Data;
 
 @Data
@@ -23,7 +23,7 @@ public class ClassroomDTO {
 
   protected PlainInstructorDTO instructor;
 
-  protected List<SeatDTO> seats = new ArrayList<>();
+  protected List<SeatDTO> seatsDTO = new ArrayList<>();
 
   public static ClassroomDTO from(Classroom classroom) {
     ClassroomDTO classroomDTO = new ClassroomDTO();
@@ -47,6 +47,14 @@ public class ClassroomDTO {
       PlainInstructorDTO dto = PlainInstructorDTO.from(instructor_);
       classroomDTO.setInstructor(dto);
     }
+
+    classroomDTO.setSeatsDTO(
+      classroom
+        .getSeats()
+        .stream()
+        .map(SeatDTO::from)
+        .collect(Collectors.toList())
+    );
 
     return classroomDTO;
   }
