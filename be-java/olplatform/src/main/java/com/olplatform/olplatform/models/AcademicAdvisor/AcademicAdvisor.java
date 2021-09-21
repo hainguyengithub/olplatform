@@ -1,11 +1,11 @@
 package com.olplatform.olplatform.models.AcademicAdvisor;
 
+import com.olplatform.olplatform.models.Person;
 import com.olplatform.olplatform.models.DTOs.AcademicAdvisorDTO;
 import com.olplatform.olplatform.models.Program.Program;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,10 +15,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Data;
 
-@Entity
 @Data
+@Entity
 @Table(name = "academic_advisor")
-public class AcademicAdvisor {
+public class AcademicAdvisor extends Person {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   protected long id;
@@ -40,7 +40,9 @@ public class AcademicAdvisor {
   @JoinColumn(name = "academic_advisor_id")
   protected List<Program> programs = new ArrayList<Program>();
 
-  public AcademicAdvisor() {}
+  public AcademicAdvisor() {
+    super();
+  }
 
   public void addProgram(Program program) {
     this.programs.add(program);

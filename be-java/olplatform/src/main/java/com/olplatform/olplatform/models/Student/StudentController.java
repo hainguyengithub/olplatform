@@ -38,9 +38,9 @@ public class StudentController {
     return new ResponseEntity<Student>(updatedStudent, HttpStatus.OK);
   }
 
-  @DeleteMapping(API_STUDENTS + "/{studentId}")
-  public ResponseEntity<Integer> deleteOne(@PathVariable long studentId) {
-    int result = this.studentRepository.deleteOne(studentId);
-    return new ResponseEntity<Integer>(result, HttpStatus.OK);
-  }
+  // @DeleteMapping(API_STUDENTS + "/{studentId}")
+  // public ResponseEntity<Integer> deleteOne(@PathVariable long studentId) {
+  //   int result = this.studentRepository.deleteOne(studentId);
+  //   return new ResponseEntity<Integer>(result, HttpStatus.OK);
+  // }
 }
