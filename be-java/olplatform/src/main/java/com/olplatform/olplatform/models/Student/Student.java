@@ -1,10 +1,17 @@
 package com.olplatform.olplatform.models.Student;
 
 import com.olplatform.olplatform.models.Person;
+import com.olplatform.olplatform.models.Registration.ClassRegistration;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Data;
 
@@ -27,6 +34,9 @@ public class Student extends Person {
   protected String email;
 
   protected String phoneNumber;
+
+  @OneToMany(mappedBy = "student") /* student is an attribute in ClassRegistration. */
+  protected List<ClassRegistration> classRegistrations = new ArrayList<>();
 
   public Student() {
     super();

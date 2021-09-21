@@ -3,6 +3,11 @@ package com.olplatform.olplatform.models.Classroom;
 import com.olplatform.olplatform.models.Course.Course;
 import com.olplatform.olplatform.models.Instructor.Instructor;
 import com.olplatform.olplatform.models.Program.Program;
+import com.olplatform.olplatform.models.Registration.ClassRegistration;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Data;
 
@@ -38,4 +44,7 @@ public class Classroom {
   @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "instructor_id")
   protected Instructor instructor;
+
+  @OneToMany(mappedBy = "classroom") /* classroom is an attribute in ClassRegistration. */
+  protected List<ClassRegistration> classRegistrations = new ArrayList<>();
 }
