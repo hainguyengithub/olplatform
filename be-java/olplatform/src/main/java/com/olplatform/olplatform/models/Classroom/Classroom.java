@@ -47,7 +47,7 @@ public class Classroom {
   @OneToMany(
     mappedBy = "classroom"
   )/* classroom is an attribute in ClassRegistration. */
-  protected List<Seat> classRegistrations = new ArrayList<>();
+  protected List<Seat> seats = new ArrayList<>();
 
   // The "classroom_id" is a column name in the Material table.
   @OneToMany(cascade = CascadeType.ALL)

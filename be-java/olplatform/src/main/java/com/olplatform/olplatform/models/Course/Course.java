@@ -45,6 +45,9 @@ public class Course extends Administrable {
   )
   protected Date endDate;
 
+  @Column(length = 12)
+  protected String code;
+
   // // "courses" is an attribute in the Program class.
   // @ManyToMany(
   //   mappedBy = "courses",

@@ -16,7 +16,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Entity
-@Table(name = "program")
+@Table(name = "material")
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class Material extends Administrable {
