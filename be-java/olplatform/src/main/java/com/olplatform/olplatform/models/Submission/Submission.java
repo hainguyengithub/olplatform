@@ -1,4 +1,4 @@
-Subpackage com.olplatform.olplatform.models.Submission;
+package com.olplatform.olplatform.models.Submission;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.olplatform.olplatform.interfaces.Evaluable;
