@@ -16,7 +16,7 @@ public class PlainClassroomDTO {
 
   protected PlainCourseDTO plainCourseDTO;
 
-  protected PlainInstructorDTO instructor;
+  protected PlainInstructorDTO plainInstructorDTO;
 
   public static PlainClassroomDTO from(Classroom classroom) {
     PlainClassroomDTO dto = new PlainClassroomDTO();
