@@ -2,12 +2,13 @@ package com.olplatform.olplatform.models.Instructor;
 
 import com.olplatform.olplatform.models.Classroom.Classroom;
 import com.olplatform.olplatform.models.Person;
-import java.util.Set;
-import javax.persistence.DiscriminatorValue;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Data;
 
@@ -39,8 +40,8 @@ public class Instructor extends Person {
    * The mappedBy property is what we use to tell Hibernate which variable we're
    * using to represent the parent class in our child class.
    */
-  // @OneToMany(mappedBy = "instructor")
-  // protected Set<Classroom> classrooms;
+  @OneToMany(mappedBy = "instructor")
+  protected List<Classroom> classrooms = new ArrayList<>();
 
   public Instructor() {
     super();
