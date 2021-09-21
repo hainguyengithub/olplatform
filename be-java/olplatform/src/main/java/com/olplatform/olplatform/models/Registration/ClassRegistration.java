@@ -10,18 +10,18 @@ import javax.persistence.ManyToOne;
 /**
  * N-N relationship between Classroom and Student captured in a new Entity.
  */
-@Entity
+// @Entity
 public class ClassRegistration {
-  @Id
-  protected Long id;
+  // @Id
+  // protected Long id;
 
-  @ManyToOne
-  @JoinColumn(name = "classroom.id")
-  protected Classroom classroom;
+  // @ManyToOne
+  // @JoinColumn(name = "classroom.id")
+  // protected Classroom classroom;
 
-  @ManyToOne
-  @JoinColumn(name = "person.id")
-  protected Student student;
+  // @ManyToOne
+  // @JoinColumn(name = "person.id")
+  // protected Student student;
 
-  // @todo: Evaluations
+  // // @todo: Evaluations
 }

@@ -5,11 +5,32 @@ import com.olplatform.olplatform.models.Person;
 import java.util.Set;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import lombok.Data;
 
+@Data
 @Entity
-@DiscriminatorValue("instructor")
+@Table(name = "instructror")
 public class Instructor extends Person {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  protected long id;
+
+  protected String firstName;
+
+  protected String lastName;
+
+  protected String username;
+
+  protected String password;
+
+  protected String email;
+
+  protected String phoneNumber;
+
   protected long salary;
 
   protected String sin;
@@ -18,8 +39,8 @@ public class Instructor extends Person {
    * The mappedBy property is what we use to tell Hibernate which variable we're
    * using to represent the parent class in our child class.
    */
-  @OneToMany(mappedBy = "instructor")
-  protected Set<Classroom> classrooms;
+  // @OneToMany(mappedBy = "instructor")
+  // protected Set<Classroom> classrooms;
 
   public Instructor() {
     super();
@@ -40,22 +61,6 @@ public class Instructor extends Person {
   ) {
     super(id, firstName, lastName, username, password, email, phoneNumber);
     this.salary = salary;
-    this.sin = sin;
-  }
-
-  public long getSalary() {
-    return salary;
-  }
-
-  public void setSalary(long salary) {
-    this.salary = salary;
-  }
-
-  public String getSin() {
-    return sin;
-  }
-
-  public void setSin(String sin) {
     this.sin = sin;
   }
 }
