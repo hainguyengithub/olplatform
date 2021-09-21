@@ -18,7 +18,7 @@ public class PlainClassroomDTO {
 
   protected PlainInstructorDTO instructor;
 
-  public PlainClassroomDTO from(Classroom classroom) {
+  public static PlainClassroomDTO from(Classroom classroom) {
     PlainClassroomDTO dto = new PlainClassroomDTO();
     dto.setId(classroom.getId());
 
@@ -38,9 +38,5 @@ public class PlainClassroomDTO {
     }
 
     return dto;
-  }
-
-  private void setPlainInstructorDTO(PlainInstructorDTO from) {
-    this.instructor = from;
   }
 }
