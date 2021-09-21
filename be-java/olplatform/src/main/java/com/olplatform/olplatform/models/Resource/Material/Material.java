@@ -1,4 +1,4 @@
-package com.olplatform.olplatform.models.Resource;
+package com.olplatform.olplatform.models.Resource.Material;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.olplatform.olplatform.interfaces.Manageable;
@@ -15,10 +15,12 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
 @Table(name = "program")
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class Material extends Administrable implements Terminable, Manageable {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

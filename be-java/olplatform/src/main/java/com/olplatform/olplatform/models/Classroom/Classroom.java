@@ -3,7 +3,7 @@ package com.olplatform.olplatform.models.Classroom;
 import com.olplatform.olplatform.models.Course.Course;
 import com.olplatform.olplatform.models.Instructor.Instructor;
 import com.olplatform.olplatform.models.Program.Program;
-import com.olplatform.olplatform.models.Resource.Material;
+import com.olplatform.olplatform.models.Resource.Material.Material;
 import com.olplatform.olplatform.models.Seat.Seat;
 import java.util.ArrayList;
 import java.util.List;
