@@ -21,7 +21,7 @@ import lombok.EqualsAndHashCode;
 @Table(name = "program")
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class Material extends Administrable implements Terminable, Manageable {
+public class Material extends Administrable {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   protected long id = 0L;

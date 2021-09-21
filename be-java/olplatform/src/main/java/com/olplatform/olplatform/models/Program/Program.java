@@ -1,9 +1,8 @@
 package com.olplatform.olplatform.models.Program;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.olplatform.olplatform.interfaces.Manageable;
-import com.olplatform.olplatform.interfaces.Terminable;
 import com.olplatform.olplatform.models.AcademicAdvisor.AcademicAdvisor;
+import com.olplatform.olplatform.models.Administrable;
 import com.olplatform.olplatform.models.Classroom.Classroom;
 import com.olplatform.olplatform.models.DTOs.ProgramDTO;
 import java.util.ArrayList;
@@ -18,11 +17,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
 @Table(name = "program")
 @Data
-public class Program implements Terminable, Manageable {
+@EqualsAndHashCode(callSuper = true)
+public class Program extends Administrable {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   protected long id = 0L;

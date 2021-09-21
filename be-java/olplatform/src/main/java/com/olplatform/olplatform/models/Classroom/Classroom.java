@@ -1,5 +1,6 @@
 package com.olplatform.olplatform.models.Classroom;
 
+import com.olplatform.olplatform.models.Administrable;
 import com.olplatform.olplatform.models.Course.Course;
 import com.olplatform.olplatform.models.Instructor.Instructor;
 import com.olplatform.olplatform.models.Program.Program;
