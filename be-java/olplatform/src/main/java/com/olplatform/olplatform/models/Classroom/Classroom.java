@@ -3,7 +3,7 @@ package com.olplatform.olplatform.models.Classroom;
 import com.olplatform.olplatform.models.Course.Course;
 import com.olplatform.olplatform.models.Instructor.Instructor;
 import com.olplatform.olplatform.models.Program.Program;
-import com.olplatform.olplatform.models.Registration.ClassRegistration;
+import com.olplatform.olplatform.models.Seat.Seat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,5 +46,5 @@ public class Classroom {
   protected Instructor instructor;
 
   @OneToMany(mappedBy = "classroom") /* classroom is an attribute in ClassRegistration. */
-  protected List<ClassRegistration> classRegistrations = new ArrayList<>();
+  protected List<Seat> classRegistrations = new ArrayList<>();
 }

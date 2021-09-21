@@ -1,7 +1,7 @@
 package com.olplatform.olplatform.models.Student;
 
 import com.olplatform.olplatform.models.Person;
-import com.olplatform.olplatform.models.Registration.ClassRegistration;
+import com.olplatform.olplatform.models.Seat.Seat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +36,7 @@ public class Student extends Person {
   protected String phoneNumber;
 
   @OneToMany(mappedBy = "student") /* student is an attribute in ClassRegistration. */
-  protected List<ClassRegistration> classRegistrations = new ArrayList<>();
+  protected List<Seat> classRegistrations = new ArrayList<>();
 
   public Student() {
     super();

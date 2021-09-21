@@ -1,4 +1,4 @@
-package com.olplatform.olplatform.models.Registration;
+package com.olplatform.olplatform.models.Seat;
 
 import com.olplatform.olplatform.models.Classroom.Classroom;
 import com.olplatform.olplatform.models.Student.Student;
@@ -18,8 +18,8 @@ import lombok.Data;
  */
 @Entity
 @Data
-@Table(name = "class_registration")
-public class ClassRegistration {
+@Table(name = "seat")
+public class Seat {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   protected Long id;
