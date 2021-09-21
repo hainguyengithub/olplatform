@@ -1,4 +1,4 @@
-package com.olplatform.olplatform.models.DTOs;
+package com.olplatform.olplatform.models.DTOs.PlainDTOs;
 
 import com.olplatform.olplatform.models.Instructor.Instructor;
 import lombok.Data;

@@ -1,6 +1,7 @@
 package com.olplatform.olplatform.models.DTOs;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.olplatform.olplatform.models.DTOs.PlainDTOs.PlainAcademicAdvisorDTO;
 import com.olplatform.olplatform.models.Program.Program;
 import java.util.ArrayList;
 import java.util.Date;

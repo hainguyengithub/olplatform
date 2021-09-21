@@ -2,8 +2,14 @@ package com.olplatform.olplatform.models.DTOs;
 
 import com.olplatform.olplatform.models.Classroom.Classroom;
 import com.olplatform.olplatform.models.Course.Course;
+import com.olplatform.olplatform.models.DTOs.PlainDTOs.PlainCourseDTO;
+import com.olplatform.olplatform.models.DTOs.PlainDTOs.PlainInstructorDTO;
+import com.olplatform.olplatform.models.DTOs.PlainDTOs.PlainProgramDTO;
 import com.olplatform.olplatform.models.Instructor.Instructor;
 import com.olplatform.olplatform.models.Program.Program;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import lombok.Data;
 
@@ -16,6 +22,8 @@ public class ClassroomDTO {
   protected PlainCourseDTO plainCourseDTO;
 
   protected PlainInstructorDTO instructor;
+
+  protected List<SeatDTO> seats = new ArrayList<>();
 
   public static ClassroomDTO from(Classroom classroom) {
     ClassroomDTO classroomDTO = new ClassroomDTO();
