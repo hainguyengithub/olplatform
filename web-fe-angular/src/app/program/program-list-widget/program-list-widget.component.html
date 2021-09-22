@@ -1,1 +1,18 @@
-<p>program-list-widget works!</p>
+<h1>Progams List (program-list-widget.component.html)</h1>
+
+<!-- <mat-list id="primary-nav">
+  <mat-list-item>OLPlatform (Logo)</mat-list-item>
+  <mat-list-item>Programs (Widget)</mat-list-item>
+  <mat-list-item>Emails</mat-list-item>
+  <mat-list-item>Messages</mat-list-item>
+  <mat-list-item>Notifications</mat-list-item>
+  <mat-list-item>Profile (Picture)</mat-list-item>
+  <mat-list-item>Log In</mat-list-item>
+</mat-list>
+<router-outlet></router-outlet> -->
+
+<mat-list>
+  <mat-list-item *ngFor="let program of programs">
+    {{ program.name }}
+  </mat-list-item>
+</mat-list>
