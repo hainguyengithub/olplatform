@@ -2,7 +2,6 @@ package com.olplatform.olplatform.models.Program;
 
 import com.olplatform.olplatform.models.Classroom.Classroom;
 import com.olplatform.olplatform.models.DTOs.ClassroomDTO;
-import com.olplatform.olplatform.models.DTOs.CourseDTO;
 import com.olplatform.olplatform.models.DTOs.ProgramDTO;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -87,7 +86,8 @@ public class ProgramController {
   @GetMapping(API_PROGRAMS_COURSES)
   public ResponseEntity<List<ClassroomDTO>> getCoursesOfProgram(
     @PathVariable long programId
-  ) throws Exception {
+  )
+    throws Exception {
     List<Classroom> classrooms =
       this.programService.getClassroomsOfProgram(programId);
     List<ClassroomDTO> classroomsDTO = classrooms
@@ -97,12 +97,3 @@ public class ProgramController {
     return new ResponseEntity<List<ClassroomDTO>>(classroomsDTO, HttpStatus.OK);
   }
 }
-/*
-List<Program> programs = this.programService.getEntities();
-
-List<ProgramDTO> programsDTO = programs
-      .stream()
-      .map(ProgramDTO::from)
-      .collect(Collectors.toList());
-    return new ResponseEntity<>(programsDTO, HttpStatus.OK);
-*/

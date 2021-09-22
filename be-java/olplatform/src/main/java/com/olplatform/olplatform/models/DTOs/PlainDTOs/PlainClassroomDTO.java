@@ -2,7 +2,6 @@ package com.olplatform.olplatform.models.DTOs.PlainDTOs;
 
 import com.olplatform.olplatform.models.Classroom.Classroom;
 import com.olplatform.olplatform.models.Course.Course;
-import com.olplatform.olplatform.models.DTOs.ProgramDTO;
 import com.olplatform.olplatform.models.Instructor.Instructor;
 import com.olplatform.olplatform.models.Program.Program;
 import java.util.Objects;

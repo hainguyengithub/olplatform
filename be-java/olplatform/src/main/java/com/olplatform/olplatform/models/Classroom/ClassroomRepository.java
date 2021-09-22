@@ -1,8 +1,6 @@
 package com.olplatform.olplatform.models.Classroom;
 
-import com.olplatform.olplatform.models.DTOs.ClassroomDTO;
 import com.olplatform.olplatform.models.Program.Program;
-
 import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
